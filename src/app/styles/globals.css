@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root{
+  --bg: #ffffff;
+  --text: #0f1724;
+  --muted: #6b7280;
+  --accent: #16A34A;
+  --card-radius: 12px;
+  --card-shadow: 0 6px 20px rgba(15,23,36,0.06);
+}
+
+html,body,#__next { height:100%; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* simple container helper */
+.container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* simple card style for components that prefer className="app-card" */
+.app-card {
+  background: #ffffff;
+  border-radius: var(--card-radius);
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(15,23,36,0.04);
+}
+
+/* small helpers */
+.text-muted { color: var(--muted); }
+.addr { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size: 0.95rem; }
+.small { font-size: 0.9rem; }
+.kpi { font-weight: 700; font-size: 1.6rem; }
+.kpi-large { font-weight: 800; font-size: 2rem; }
+
+/* navbar fallback spacing if needed */
+.navbar-spacer { height: 62px; } /* keep content below navbar if sticky */
