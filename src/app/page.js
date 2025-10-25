@@ -1,47 +1,50 @@
-import Card from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import FacilityCard from '@/components/emissions/FacilityCard';
+// src/app/page.js
+import KPIGrid from "@/components/dashboard/KPIGrid";
+import EmissionsChart from "@/components/dashboard/EmissionsChart";
+import RecentActivity from "@/components/dashboard/RecentActivity";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import FacilityCard from "@/components/emissions/FacilityCard";
+
+export const metadata = {
+  title: "GreenChain — Dashboard",
+  description:
+    "Monitor emissions, auto-procure offsets and generate on-chain proofs",
+};
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      <header className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-semibold">GreenChain Dashboard</h1>
-          <p className="text-muted mt-1">Track emissions, auto-procure offsets, and generate on-chain proofs.</p>
-        </div>
-        <div className="flex gap-3">
-          <Button variant="ghost">Get Test PYUSD</Button>
-          <Button>Upload CSV</Button>
+    <div className="container mx-auto px-6 py-8 space-y-8">
+      {/* Header */}
+      <header className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="min-w-0">
+          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-white">
+            Dashboard
+          </h1>
+          <p className="text-sm text-neutral-400 mt-1">
+            Monitor your carbon footprint and offset progress
+          </p>
         </div>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <h3 className="text-muted text-sm">This month (tCO₂e)</h3>
-          <div className="text-3xl font-bold mt-3">1,240</div>
-          <p className="text-sm text-muted mt-2">Auto-procured: 68%</p>
-        </Card>
-
-        <Card>
-          <h3 className="text-muted text-sm">PYUSD Spent</h3>
-          <div className="text-3xl font-bold mt-3">$3,780</div>
-          <p className="text-sm text-muted mt-2">Credits retired</p>
-        </Card>
-
-        <Card>
-          <h3 className="text-muted text-sm">Last Retirement</h3>
-          <div className="text-ellipsis mt-3 font-mono">0x12ab...f9ee</div>
-          <p className="text-xs text-muted mt-2">Sepolia • View on Blockscout</p>
-        </Card>
+      {/* KPI row */}
+      <section aria-labelledby="kpi-heading">
+        <h2 id="kpi-heading" className="sr-only">
+          Key performance indicators
+        </h2>
+        <KPIGrid />
       </section>
 
-      <section>
-        <h2 className="text-xl font-semibold">Facilities</h2>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <FacilityCard name="Hotel Lisboa" id="fac-001" />
-          <FacilityCard name="Manufacturing Unit A" id="fac-002" />
-          <FacilityCard name="Office HQ" id="fac-003" />
+      {/* Chart + Activity (2:2 layout to match KPI grid) */}
+      <section
+        aria-label="Overview"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch"
+      >
+        <div className="h-full">
+          <EmissionsChart />
+        </div>
+        <div className="h-full">
+          <RecentActivity />
         </div>
       </section>
     </div>

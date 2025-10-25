@@ -1,33 +1,39 @@
-// src/app/layout.js  (server component)
+// src/app/layout.js (server component)
 import "./styles/globals.css";
+import { WalletProvider } from "@/providers/WalletProvider";
 import MotionWrapper from "@/components/layout/MotionWrapper";
-import { WalletProvider } from "@/providers/WalletProvider"; // named export
 import Navbar from "@/components/layout/Navbar";
+import Sidebar from "@/components/layout/Sidebar";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "600", "700"],
+});
 
 export const metadata = {
-  title: "GreenChain — Dashboard",
-  description: "Greenchain carbon offset automation demo",
+  title: "GreenChain",
+  description: "Greenchain demo",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body>
-        {/* WalletProvider must wrap Navbar so connect button can use the context */}
+      <body className={`${inter.className}`}>
         <WalletProvider>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1 container">
-              <MotionWrapper>{children}</MotionWrapper>
-            </main>
-            <footer className="text-sm text-muted p-4 text-center">
-              © {new Date().getFullYear()} GreenChain — hackathon demo
-            </footer>
+          <div className="min-h-screen flex">
+            {/* Left sidebar stays dark */}
+            <Sidebar />
+
+            {/* Right: main animated background */}
+            <div className="flex-1 flex flex-col relative metaverse-bg min-h-screen">
+              <Navbar />
+              <div className="navbar-divider" />
+              <main className="flex-1 container py-6">
+                <MotionWrapper>{children}</MotionWrapper>
+              </main>
+            </div>
           </div>
         </WalletProvider>
       </body>

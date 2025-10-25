@@ -1,51 +1,120 @@
+/* src/styles/globals.css
+   Must have @import "tailwindcss"; as the first non-@charset rule when using PostCSS plugin.
+*/
 @import "tailwindcss";
 
+/* small token set */
 :root{
-  --bg: #ffffff;
-  --text: #0f1724;
-  --muted: #6b7280;
+  --bg: #0b0f12;
+  --surface: #0f1316;
+  --muted: #94a3b8;
   --accent: #16A34A;
   --card-radius: 12px;
-  --card-shadow: 0 6px 20px rgba(15,23,36,0.06);
+  --card-shadow: 0 8px 30px rgba(8,15,26,0.6);
 }
 
 html,body,#__next { height:100%; }
 body {
-  margin: 0;
-  padding: 0;
+  margin:0;
+  padding:0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: var(--bg);
-  color: var(--text);
+  color: #e6eef8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  font-size: 16px;
-  line-height: 1.45;
 }
 
-/* simple container helper */
+/* container helper */
 .container {
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 1180px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:1.25rem;
+  padding-right:1.25rem;
 }
 
-/* simple card style for components that prefer className="app-card" */
+/* simple component tokens */
 .app-card {
-  background: #ffffff;
+  background: var(--surface);
   border-radius: var(--card-radius);
   padding: 1rem;
   box-shadow: var(--card-shadow);
-  border: 1px solid rgba(15,23,36,0.04);
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* small helpers */
 .text-muted { color: var(--muted); }
 .addr { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size: 0.95rem; }
-.small { font-size: 0.9rem; }
 .kpi { font-weight: 700; font-size: 1.6rem; }
 .kpi-large { font-weight: 800; font-size: 2rem; }
 
-/* navbar fallback spacing if needed */
-.navbar-spacer { height: 62px; } /* keep content below navbar if sticky */
+.logo-mark {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@keyframes metaDepth {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Deep metaverse gradient — black core with navy & emerald undertones */
+.metaverse-bg {
+  position: relative;
+  background: linear-gradient(
+    120deg,
+    #070b10 0%,
+    #0a1014 40%,
+    #0b1117 75%,
+    #060a0d 100%
+  );
+  background-size: 300% 300%;
+  animation: metaDepth 24s ease-in-out infinite;
+  color: #f3f4f6;
+  transition: background 0.6s ease;
+  overflow: hidden;
+}
+
+/* Subtle violet glow (top-right metaverse highlight) */
+.metaverse-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 85% 20%,
+    rgba(140, 120, 255, 0.06),
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+}
+
+/* Gentle emerald hue (bottom-left hint, now much darker) */
+.metaverse-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 15% 90%,
+    rgba(0, 180, 100, 0.025),
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+}
+
+/* Navbar divider line */
+.navbar-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 157, 0.15),
+    rgba(90, 255, 200, 0.05),
+    rgba(150, 255, 240, 0.15)
+  );
+  box-shadow: 0 0 6px rgba(0, 255, 157, 0.08);
+}

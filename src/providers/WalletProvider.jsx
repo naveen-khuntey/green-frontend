@@ -6,11 +6,6 @@ import { ethers } from "ethers";
 
 const WalletContext = createContext();
 
-/**
- * WalletProvider
- * - Exposes: address, provider, network, isProcessing
- * - Actions: connectWallet(), disconnect(), getSigner()
- */
 export function WalletProvider({ children }) {
   const [address, setAddress] = useState(null);
   const [provider, setProvider] = useState(null);
@@ -25,9 +20,7 @@ export function WalletProvider({ children }) {
     setProvider(p);
 
     // initial network
-    p.getNetwork()
-      .then((n) => setNetwork(n))
-      .catch(() => {});
+    p.getNetwork().then((n) => setNetwork(n)).catch(() => {});
 
     // check if already connected
     p.send("eth_accounts", [])
@@ -39,7 +32,11 @@ export function WalletProvider({ children }) {
     // account change handler
     const handleAccountsChanged = (accounts) => {
       if (accounts && accounts.length) setAddress(accounts[0]);
-      else setAddress(null);
+      else {
+        setAddress(null);
+        // also clear network when accounts are removed (user disconnected from site)
+        setNetwork(null);
+      }
     };
 
     // chain change handler (recreate provider and refetch network)
@@ -78,6 +75,7 @@ export function WalletProvider({ children }) {
       const addr = await signer.getAddress();
       setProvider(p);
 
+      // ensure we refresh the network after connecting
       try {
         const n = await p.getNetwork();
         setNetwork(n);
@@ -97,8 +95,11 @@ export function WalletProvider({ children }) {
   }
 
   function disconnect() {
-    // injected wallets can't be programmatically disconnected
+    // Clear local state so UI shows default "no network" state.
     setAddress(null);
+    setNetwork(null);
+    // Optionally clear provider reference (it will be recreated on connect)
+    setProvider(null);
   }
 
   async function getSigner() {
