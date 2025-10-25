@@ -1,54 +1,57 @@
-// src/components/settings/FacilitiesCard.jsx
 "use client";
 
-import { motion } from "framer-motion";
 import React from "react";
+import { Building2, Plus } from "lucide-react";
 
 export default function FacilitiesCard() {
   return (
-    <div>
-      <div className="flex items-center gap-3 mb-3">
-        <svg className="w-6 h-6 text-neutral-300" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M3 6h18M6 6v12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <h2 className="text-lg font-semibold text-white">Facilities</h2>
+    <section className="rounded-2xl border border-white/6 bg-[rgba(255,255,255,0.02)] p-6 group">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-semibold text-white flex items-center gap-3">
+            <Building2 className="w-5 h-5 text-emerald-400" />
+            Facilities
+          </h3>
+          <p className="text-sm text-neutral-400 mt-1">
+            Manage your monitored facilities and locations
+          </p>
+        </div>
       </div>
 
-      <p className="text-sm text-neutral-400 mb-6">Manage your monitored facilities and locations</p>
+      <div className="mt-6 space-y-4">
+        <div className="rounded-lg border border-white/6 p-5 flex items-center justify-between gap-4 hover:border-emerald-600 transition-all cursor-default">
+          <div>
+            <div className="font-semibold text-white">Hotel Lisboa</div>
+            <div className="text-sm text-neutral-400">Lisbon, Portugal</div>
 
-      <motion.div
-        className="rounded-lg border border-white/6 p-5 bg-[rgba(255,255,255,0.01)]"
-        initial={{ opacity: 0, y: 4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.36 }}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <div className="text-sm font-semibold text-white">Hotel Lisboa</div>
-            <div className="text-xs text-neutral-400">Lisbon, Portugal</div>
+            <div className="mt-4 text-sm text-neutral-400">
+              <div className="inline-block mr-4">
+                <div className="text-xs text-neutral-400">Grid Region</div>
+                <div className="font-semibold text-emerald-400">EU-PT</div>
+              </div>
 
-            <div className="mt-3 text-xs text-neutral-400">
-              <div>Grid Region</div>
-              <div className="mt-1 font-semibold text-emerald-400">EU-PT</div>
+              <div className="inline-block">
+                <div className="text-xs text-neutral-400">Last Reading</div>
+                <div className="font-semibold text-white">2 hours ago</div>
+              </div>
             </div>
           </div>
 
-          <div className="text-right">
-            <div className="text-xs text-neutral-400">Last Reading</div>
-            <div className="mt-1 font-semibold text-white">2 hours ago</div>
-            <div className="mt-3">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs bg-white/4 text-white cursor-default">Active</span>
-            </div>
+          <div className="flex items-start">
+            <span className="rounded-full bg-white/6 px-3 py-1 text-xs text-neutral-200">
+              Active
+            </span>
           </div>
         </div>
 
         <button
-          className="mt-6 w-full rounded-md bg-[rgba(255,255,255,0.02)] border border-white/6 py-3 text-sm font-semibold text-white transition hover:border-emerald-500 hover:bg-[rgba(16,185,129,0.02)] cursor-pointer"
-          aria-label="Add new facility"
+          type="button"
+          className="w-full flex items-center justify-center gap-2 rounded-md bg-[rgba(255,255,255,0.02)] border border-white/6 py-3 text-sm font-medium text-white hover:border-emerald-600 hover:bg-[rgba(16,185,129,0.02)] transition cursor-pointer"
         >
+          <Plus className="w-4 h-4" />
           Add New Facility
         </button>
-      </motion.div>
-    </div>
+      </div>
+    </section>
   );
 }

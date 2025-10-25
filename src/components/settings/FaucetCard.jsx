@@ -1,38 +1,37 @@
-// src/components/settings/FaucetCard.jsx
 "use client";
 
-import { motion } from "framer-motion";
 import React from "react";
+import { Droplet, ExternalLink } from "lucide-react";
 
 export default function FaucetCard() {
   return (
-    <>
-      <div className="flex items-center gap-3 mb-3">
-        <svg className="w-6 h-6 text-neutral-300" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M12 2v10M8 8h8M4 20h16" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <h2 className="text-lg font-semibold text-white">PYUSD Testnet Faucet</h2>
+    <section className="rounded-2xl border border-white/6 bg-[rgba(255,255,255,0.02)] p-6 group">
+      <div className="flex items-start justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-white flex items-center gap-3">
+            <Droplet className="w-5 h-5 text-emerald-400" />
+            PYUSD Testnet Faucet
+          </h3>
+          <p className="text-sm text-neutral-400 mt-1">
+            Get test PYUSD tokens on Sepolia network for demo purposes
+          </p>
+        </div>
       </div>
 
-      <p className="text-sm text-neutral-400 mb-6">Get test PYUSD tokens on Sepolia network for demo purposes</p>
-
-      <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.36 }}>
-        <div className="rounded-md border border-emerald-800/30 p-5 bg-[rgba(0,0,0,0.14)]">
-          <p className="text-sm text-neutral-300 mb-4">Get test PYUSD</p>
-
-          <a
-            role="button"
-            href="#"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[rgba(255,255,255,0.02)] border border-white/6 hover:bg-[rgba(16,185,129,0.06)] hover:border-emerald-500 cursor-pointer text-sm font-semibold"
+      <div className="mt-6">
+        <div className="rounded-lg border border-emerald-900/40 bg-[rgba(0,0,0,0.18)] p-5">
+          <div className="text-sm text-neutral-300 mb-3">
+            Get test PYUSD
+          </div>
+          <button
+            onClick={() => alert("Mock faucet trigger")}
+            className="inline-flex items-center gap-2 rounded-md bg-[rgba(255,255,255,0.02)] border border-white/6 px-4 py-2 text-sm text-white hover:bg-[rgba(16,185,129,0.06)] hover:border-emerald-600 transition cursor-pointer"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-neutral-200">
-              <path d="M14 3h7v7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M21 21H3V3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <ExternalLink className="w-4 h-4" />
             Get Test PYUSD
-          </a>
+          </button>
         </div>
-      </motion.div>
-    </>
+      </div>
+    </section>
   );
 }
