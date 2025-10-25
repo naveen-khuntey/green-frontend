@@ -145,7 +145,7 @@ export default function WalletConnectButton() {
             onClick={handleConnect}
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full font-semibold text-black
                        bg-linear-to-br from-emerald-400 to-green-500/95 shadow-[0_6px_24px_rgba(16,185,129,0.18)]
-                       ring-1 ring-white/6 hover:brightness-105 transition"
+                       ring-1 ring-white/6 hover:brightness-105 transition cursor-pointer"
             aria-label="Connect Wallet"
           >
             <span className="w-2 h-2 rounded-full bg-white/90 shadow-[0_4px_12px_rgba(16,185,129,0.24)]" />
@@ -172,7 +172,7 @@ export default function WalletConnectButton() {
           aria-haspopup="menu"
           aria-expanded={open}
           onClick={() => setOpen((s) => !s)}
-          className="inline-flex items-center gap-3 bg-white/6 px-3 py-2 rounded-lg text-sm font-mono hover:bg-white/8 transition"
+          className="inline-flex items-center gap-3 bg-white/6 px-3 py-2 rounded-lg text-sm font-mono hover:bg-white/8 transition cursor-pointer"
           title={address}
         >
           <span className="hidden sm:inline text-xs text-neutral-200">{shortAddr(address)}</span>

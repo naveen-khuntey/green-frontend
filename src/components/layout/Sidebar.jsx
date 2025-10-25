@@ -17,7 +17,6 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/procure", label: "Procure", icon: ShoppingCart },
   { href: "/ledger", label: "Ledger", icon: FileText },
-  { href: "/facilities", label: "Facilities", icon: Factory },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
